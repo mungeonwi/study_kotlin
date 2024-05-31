@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: board-webflux
+  output:
+    ansi:
+      enabled: always
+  r2dbc:
+    url: r2dbc:pool:h2:mem://localhost/board
+  sql:
+    init:
+      mode: embedded
+logging:
+  level:
+    com.board: debug
+    org.springframework.r2dbc.core: debug
