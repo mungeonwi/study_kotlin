@@ -1,6 +1,7 @@
 package com.kotlin.study.ktboard.service
 
 import com.kotlin.study.ktboard.Exception.NotFoundBoardException
+import com.kotlin.study.ktboard.controller.dto.QrBoardRequestDto
 import com.kotlin.study.ktboard.controller.dto.ReqCreateBoardDto
 import com.kotlin.study.ktboard.controller.dto.ReqUpdateBoaredDto
 import com.kotlin.study.ktboard.controller.dto.toEntity
@@ -43,5 +44,9 @@ class BoardService(
         val get = this.get(id)
 //        boardRepository.deleteById(id)
         boardRepository.delete(get)
+    }
+
+    fun search(qrBoardRequestDto: QrBoardRequestDto): List<Board>{
+        return boardRepository.findAllByTitleContains(qrBoardRequestDto.title)
     }
 }

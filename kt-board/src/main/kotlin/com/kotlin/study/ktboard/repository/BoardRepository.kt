@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface BoardRepository : JpaRepository<Board, Long>{
-    // @TODO implements
+    fun findAllByTitleContains(title: String?): List<Board>
 }

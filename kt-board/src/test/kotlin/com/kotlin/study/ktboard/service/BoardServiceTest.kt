@@ -1,6 +1,7 @@
 package com.kotlin.study.ktboard.service
 
 import com.kotlin.study.ktboard.Exception.NotFoundBoardException
+import com.kotlin.study.ktboard.controller.dto.QrBoardRequestDto
 import com.kotlin.study.ktboard.controller.dto.ReqCreateBoardDto
 import com.kotlin.study.ktboard.controller.dto.ReqUpdateBoaredDto
 import com.kotlin.study.ktboard.controller.dto.toEntity
@@ -54,9 +55,9 @@ class BoardServiceTest(
     fun readAllTest(){
         val list = listOf(
             ReqCreateBoardDto(title = "test1 title", content = "test1 content", creator = "test1 creator"),
-            ReqCreateBoardDto(title = "test2 title", content = "test2 content aaa", creator = "test2 creator"),
-            ReqCreateBoardDto(title = "test3 title", content = "test3 content aaa", creator = "test3 creator"),
-            ReqCreateBoardDto(title = "test4 title", content = "test4 content aaa", creator = "test4 creator"),
+            ReqCreateBoardDto(title = "test2 title aaa", content = "test2 content aaa", creator = "test2 creator"),
+            ReqCreateBoardDto(title = "test3 title aaa", content = "test3 content aaa", creator = "test3 creator"),
+            ReqCreateBoardDto(title = "test4 title aaa", content = "test4 content aaa", creator = "test4 creator"),
             ReqCreateBoardDto(title = "test5 title", content = "test5 content", creator = "test5 creator"),
         )
 
@@ -64,6 +65,12 @@ class BoardServiceTest(
 
 
         // aaa 3개 조회
+        val search = boardService.search(QrBoardRequestDto(title = "aaa"))
+
+        assertEquals(3,search.size)
+        search.forEach{
+            assertTrue(it.title?.contains("aaa") ?: false)
+        }
 
         // title이 2 인거 조회
 
